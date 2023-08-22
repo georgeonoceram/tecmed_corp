@@ -1,0 +1,12 @@
+>>> Gerais
+- Ajustar as pastas e remover arquivos desnecessários.
+- Colocar todas os stats no global (raiz do projeto)
+- Criar list, create, update e delete para todos os cadastros.
+
+>>> Login
+- Ajustar para conseguir login pela pagina incial, só está pelo end completo
+
+>>> HCorp
+- 
+
+>>> TMRAT
