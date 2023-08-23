@@ -14,8 +14,8 @@ def home(request):
 
 
 @login_required
-def hcorp(requests):
-    return render(requests, "tmglobal/pages/hcorp.html")
+def hp_corp(requests):
+    return render(requests, "./pages/hp_corp.html")
 
 
 # Classe para retornar todos os registros do cadastro de clientes
@@ -23,7 +23,7 @@ class ClientListViewBase(LoginRequiredMixin, ListView):
     model = Clientes
     context_object_name = "vwclientes"
     ordering = ["-cliente_pk"]
-    template_name = "tmglobal/pages/glbcorp_hp.html"
+    template_name = "pages/hp_corp.html"
     paginate_by = 10
 
     def get_queryset(self):
@@ -38,7 +38,7 @@ class ClientListViewBase(LoginRequiredMixin, ListView):
 # Classe para Visualizar cadastro de Cliente
 class ClientViewBase(DetailView):
     model = Clientes
-    template_name = "tmglobal/pages/glbcorp_hp.html"
+    template_name = "pages/hp_corp.html"
     success_url = reverse_lazy("glbclient")
 
 
@@ -47,13 +47,13 @@ class ClientCreatetBase(LoginRequiredMixin, CreateView):
     model = Clientes
     fields = [
         "cliente_pk",
-        "cod_cli",
-        "seq_cli",
+        "emp_fil_fk_cli",
+        "cnpj_cpf_cli",
+        "fam_cad_cli",
         "tp_cli",
         "nm_jur_cli",
         "nm_com_cli",
         "tel_cli",
-        "cnpj_cpf_cli",
         "end_cli",
         "end_compl_cli",
         "end_bairro_cli",
@@ -62,8 +62,18 @@ class ClientCreatetBase(LoginRequiredMixin, CreateView):
         "end_uf_cli",
         "dt_ini_relac_cli",
         "email_cli",
+        "contato_cli",
+        "ie_cli",
+        "im_cli",
+        "banco_cli",
+        "agencia_cli",
+        "ccorrente_cli",
+        "tp_pag_cli",
+        "lim_cred_cli",
+        "venc_lim_cred_cli",
+        "status_cad_cli",
     ]
-    template_name = "tmglobal/pages/glbcorp_hp.html"
+    template_name = "pages/hp_corp.html"
     success_url = reverse_lazy("glbclient")
 
 
@@ -71,9 +81,11 @@ class ClientCreatetBase(LoginRequiredMixin, CreateView):
 class ClientUpdatetBase(LoginRequiredMixin, UpdateView):
     model = Clientes
     fields = [
-        "tp_cli",
         "nm_jur_cli",
         "nm_com_cli",
+        "status_cad_cli",
+        "tp_cli",
+        "fam_cad_cli",
         "tel_cli",
         "end_cli",
         "end_compl_cli",
@@ -82,16 +94,25 @@ class ClientUpdatetBase(LoginRequiredMixin, UpdateView):
         "end_cep_cli",
         "end_uf_cli",
         "dt_ini_relac_cli",
+        "contato_cli",
         "email_cli",
+        "ie_cli",
+        "im_cli",
+        "banco_cli",
+        "agencia_cli",
+        "ccorrente_cli",
+        "tp_pag_cli",
+        "lim_cred_cli",
+        "venc_lim_cred_cli",
     ]
-    template_name = "tmglobal/pages/glbcorp_hp.html"
+    template_name = "pages/hp_corp.html"
     success_url = reverse_lazy("glbclient")
 
 
 # Classe para Delete de registros no cadastro de Clientes
 class ClientDeletetBase(LoginRequiredMixin, DeleteView):
     model = Clientes
-    template_name = "tmglobal/pages/glbcorp_hp.html"
+    template_name = "pages/hp_corp.html"
     success_url = reverse_lazy("glbclient")
 
 
@@ -100,7 +121,7 @@ class ForneceListViewBase(LoginRequiredMixin, ListView):
     model = Fornecedores
     context_object_name = "vwfornece"
     ordering = ["-fornece_pk"]
-    template_name = "tmglobal/pages/glbcorp_hp.html"
+    template_name = "pages/hp_corp.html"
     paginate_by = 3
 
     def get_queryset(self):

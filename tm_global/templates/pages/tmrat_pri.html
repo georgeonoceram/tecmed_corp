@@ -1,0 +1,103 @@
+{% load static %}
+
+<br>
+<p class="h4 text-center">RAT Rel.Atend.Técnico </p>
+<br>
+
+<div class="container">
+
+  <div class="form-group">    <!-- - Pesquisa - -->
+    <form action="?" method="GET">
+      <input type="text" name="desc_rat" id="" value="{{ request.GET.desc_rat}}" class="p-1 border" autocomplete="off" placeholder="Digite sua pesquisa">
+      <button type="submit" class="btn btn-outline-success btn-sm"> Pesquisar</button>
+      <a href="{% url 'htmrat' %}" class="btn btn-outline-primary btn-sm"> Limpar </a>
+      <i class="bi bi-grip-vertical"></i>
+      <a href="{% url 'ratcreate' %}" class="btn btn-primary btn-sm" title="Incluir Rel.At.Técnico">Incluir</a>
+      <br>
+    </form>
+  </div> 
+
+<div class="table-responsive">
+  <table class="table table-sm table-striped">    <!-- - Tabela - -->
+    <thead>
+      <tr>
+        <th scope='col'> #Id</th>
+        <th scope='col'> Cliente</th>
+        <th scope='col'> Técnico</th>
+        <th scope='col'> Descrição</th>
+        <th scope='col'> Tp</th>
+        <th scope='col'> Data</th>
+        <th scope='col'> Hr.Inicial</th>
+        <th scope='col'> Hr.Final</th>
+        <th scope='col'> Vl.Atendimento</th>
+        <th scope='col'> Vl.Peças</th>
+        <th scope='col'> Vl.Total</th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+
+          <td>{{object.rat_pk}}</td>
+          <td>{{object.cod_cli}}</td>
+          <td>{{object.user_rat}}</td>
+          <td>{{object.desc_rat}}</td>
+          <td>{{object.tp_rat}}</td>
+          <td>{{object.dt_rat}}</td>
+          <td>{{object.hr_ini_rat}}</td>
+          <td>{{object.hr_fim_rat}}</td>
+          <td>{{object.vl_atend_rat}}</td>
+          <td>{{object.vl_pecas_rat}}</td>
+          <td>{{object.vl_pecas_rat}}</td>
+          <td><a class="btn btn-primary btn-sm" href="{% url 'ratview' object.rat_pk%}" role="button" title="Visualizar"><i class="bi-zoom-in"></i></a> <!-- - bi bi-zoom-in - --> </td>
+          <td><a class="btn btn-warning btn-sm" href="{% url 'ratupdate' object.rat_pk%}" role="button" title="Alterar"><i class="bi bi-sliders"></i></a> <!-- - bi bi-sliders - --> </td>
+          <td><a class="btn btn-danger btn-sm" href="{% url 'ratdelete' object.rat_pk%}" role="button" title="Excluir"><i class="bi-trash"></i></a> <!-- - bi bi-trash3 - --></td>
+          <td><a class="btn btn-success btn-sm" href="#" role="button" title="Imprimir"><i class="bi-printer"></i></a> <!-- - bi printer  - --> </td>
+          <td><a class="btn btn-info btn-sm" href="#" role="button" title="Compartilhar"><i class="bi-share"></i></a> <!-- - bi share - --></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td> Nenhum registro encontrado.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>  
+
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      {% if request.GET.desc_rat %}
+        <li class="page-item"><a class="page-link"
+            href="?page=1&desc_rat={{request.GET.desc_rat}}">&laquo;Primeira</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo;Anterior</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo;Primeira</a></li>
+        <li class="page-item"><a class="page-link"
+            href="?page={{page_obj.previous_page_number}}&desc_rat={{request.GET.desc_rat}}">&laquo;Anterior</a></li>
+        {% endif %}
+    {% endif %}
+    <li class="page-item">
+      <span class="page-link"> Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+    </li>
+    {% if page_obj.has_next %}
+      {% if request.GET.desc_rat %}
+        <li class="page-item"><a class="page-link"
+        href="?page={{page_obj.next_page_number }}&desc_rat={{request.GET.desc_rat}}">&laquo;Próxima</a>
+        </li>
+        <li class="page-item"><a class="page-link"
+        href="?page={{page_obj.paginator.num_pages }}&desc_rat={{request.GET.desc_rat}}">&laquo;Última</a>
+        </li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Próxima</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Última &raquo;</a></li>
+      {% endif %}
+    {% endif %}
+</div>
+<br>

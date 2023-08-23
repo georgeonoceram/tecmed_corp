@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tm_global',
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -127,11 +129,11 @@ AUTH_USER_MODEL = "tm_global.Users"
 
 
 # Role Permissions
-#ROLEPERMISSIONS_MODULE = "tmcorpapp.roles"
+ROLEPERMISSIONS_MODULE = "tmcorpapp.roles"
 
 # Redirect Logout
-LOGIN_REDIRECT_URL = "hcorp"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "hp_corp"
+LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # Crispy Forms
-#CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"

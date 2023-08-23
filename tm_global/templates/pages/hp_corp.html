@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  {% include 'partials/glbcorp_head.html' %}   <!-- - Head - -->
+</head>
+
+<body>
+
+{% include 'partials/glbcorp_header.html' %}   <!-- - Header and Menu - -->
+
+<!-- #################- Cadastro de Clientes -################# -->
+  {% if request.resolver_match.url_name == 'glbclient' %}   <!-- - Cadastro de Clientes - -->
+  
+    {% include 'pages/glbcorp_client_pri.html' %}      
+  
+  {% elif request.resolver_match.url_name == 'glbclientins' %}   <!-- - Create Cadastro de Clientes - -->
+
+    {% include 'pages/glbcorp_client_crud.html' %}     
+    
+    {% elif request.resolver_match.url_name == 'glbclientvw' %}    <!-- - Visualiza Cad Cli - -->
+
+    {% include 'pages/glbcorp_client_crud.html' %}     
+
+  {% elif request.resolver_match.url_name == 'glbclientupd' %}  <!-- - Update Cadastro de Clientes - -->
+
+    {% include 'pages/glbcorp_client_crud.html' %}      
+
+  {% elif request.resolver_match.url_name == 'glbclientdel' %}     <!-- - Delete Cadastro de Clientes - -->
+
+    {% include 'pages/glbcorp_client_crud.html' %}     
+
+
+<!-- #################- Cadastro de Fornecedores -################# -->
+  {% elif request.resolver_match.url_name == 'glbfornece' %}  <!-- - Cadastro de Fornecedores - -->
+  
+    {% include 'pages/glbcorp_fornece_pri.html' %}      
+
+<!-- #################- Relatório de Atendimento Técnico -################# -->
+  {% elif request.resolver_match.url_name == 'htmrat' %}  <!-- - Cadastro de RAT - -->
+
+    {% include 'pages/tmrat_pri.html' %}      
+
+  {% elif request.resolver_match.url_name == 'ratview' %}   <!-- - Visualizar RAT - -->
+
+    {% include 'pages/tmrat_crud.html' %}      
+
+  {% elif request.resolver_match.url_name == 'ratcreate' %}   <!-- - Criar RAT - -->
+
+    {% include 'pages/tmrat_crud.html' %}      
+
+  {% elif request.resolver_match.url_name == 'ratupdate' %}   <!-- - Alterar RAT - -->
+
+    {% include 'pages/tmrat_crud.html' %}      
+
+  {% elif request.resolver_match.url_name == 'ratdelete' %}   <!-- - Deletar RAT - -->
+
+    {% include 'pages/tmrat_crud.html' %}      
+
+  {% else %}   <!-- - Home Page - -->
+  
+    {% include 'pages/hp_corp_body.html' %}      
+
+  {% endif %}
+
+{% include 'partials/glbcorp_footer.html' %}   <!-- - Footer - -->
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% load static %}
+<br>
+<p class="h4 text-center">Cadastro de Clientes</p>
+<br>
+
+<div class="container">
+
+  <div class="form-group">    <!-- - Pesquisa - -->
+    <form action="?" method="GET">
+      <input type="text" name="nm_com_cli" id="" value="{{ request.GET.nm_com_cli}}" class="p-1 border" autocomplete="off" placeholder="Digite sua pesquisa">
+      <button type="submit" class="btn btn-outline-success btn-sm"> Pesquisar</button>
+      <a href="{% url 'glbclient' %}" class="btn btn-outline-primary btn-sm">Limpar</a>
+      <i class="bi bi-grip-vertical"></i>
+      <a href="{% url 'glbclientins' %}" class="btn btn-primary btn-sm" title="Incluir Cliente">Incluir</a>
+      <br>
+    </form>
+  </div> 
+
+<div class="table-responsive">
+  <table class="table table-sm table-striped">    <!-- - Tabela - -->
+    <thead>
+      <tr>
+        <th scope='col'> Emp/Filial</th>
+        <th scope='col'> #Id</th>
+        <th scope='col'> CNPJ/CPF</th>
+        <th scope='col'> Nome Cliente</th>
+        <th scope='col'> Contato</th>
+        <th scope='col'> Telefone</th>
+        <th scope='col'> E-mail</th>
+        <th scope='col'> Cidade</th>
+        <th scope='col'> Status</th>        
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>{{object.emp_fil_fk_cli}}</td>
+          <td>{{object.cliente_pk }}</td>
+          <td>{{object.cnpj_cpf_cli}}</td>
+          <td>{{object.nm_com_cli}}</td>
+          <td>{{object.contato_cli}}</td>
+          <td>{{object.tel_cli}}</td>
+          <td>{{object.email_cli}}</td>
+          <td>{{object.end_cidade_cli}}</td>
+          <td>{{object.get_status_cad_cli_display}}</td>
+          <td><a class="btn btn-primary btn-sm" href="{% url 'glbclientvw'  object.cliente_pk%}" role="button" title="Visualizar"><i class="bi-zoom-in"></i></a></td>
+          <td><a class="btn btn-warning btn-sm" href="{% url 'glbclientupd' object.cliente_pk %}" role="button" title="Alterar"><i class="bi-sliders"></i></a></td>
+          <td><a class="btn btn-danger btn-sm" href="{% url 'glbclientdel' object.cliente_pk %}" role="button" title="Excluir"><i class="bi-trash"></i></a></td>
+          <td><a class="btn btn-success btn-sm" href="#" role="button" title="Ficha Financeira"><i class="bi bi-currency-exchange"></i></a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3"> Nenhum registro encontrado.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div> 
+  <br>
+
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      {% if request.GET.nm_com_cli %}
+        <li class="page-item"><a class="page-link"
+            href="?page=1&nm_com_cli={{request.GET.nm_com_cli}}">&laquo;Primeira</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo;Anterior</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo;Primeira</a></li>
+        <li class="page-item"><a class="page-link"
+            href="?page={{page_obj.previous_page_number}}&nm_com_cli={{request.GET.nm_com_cli}}">&laquo;Anterior</a></li>
+        {% endif %}
+    {% endif %}
+    <li class="page-item">
+      <span class="page-link"> Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+    </li>
+    {% if page_obj.has_next %}
+      {% if request.GET.nm_com_cli %}
+        <li class="page-item"><a class="page-link"
+        href="?page={{page_obj.next_page_number }}&nm_com_cli={{request.GET.nm_com_cli}}">&laquo;Próxima</a>
+        </li>
+        <li class="page-item"><a class="page-link"
+        href="?page={{page_obj.paginator.num_pages }}&nm_com_cli={{request.GET.nm_com_cli}}">&laquo;Última</a>
+        </li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Próxima</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Última &raquo;</a></li>
+      {% endif %}
+    {% endif %}
+</div>
+<br>
+

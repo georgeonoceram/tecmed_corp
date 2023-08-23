@@ -1,0 +1,91 @@
+{% load static %}
+
+<br>
+<p class="h4 text-center">Cadastro de Fornecedores</p>
+<br>
+
+<div class="container">
+
+  <div class="form-group">    <!-- - Pesquisa - -->
+    <form action="?" method="GET">
+      <input type="text" name="nm_com_for" id="" value="{{ request.GET.nm_com_for}}" class="p-1 border" autocomplete="off" placeholder="Digite sua pesquisa">
+      <button type="submit" class="btn btn-outline-success btn-sm"> Pesquisar</button>
+      <a href="{% url 'glbfornece' %}" class="btn btn-outline-primary btn-sm"> Limpar </a>
+      <i class="bi bi-grip-vertical"></i>
+      <button type="button" class="btn btn-primary btn-sm" title="Incluir Fornecedor">Incluir</button>
+      <br>
+    </form>
+  </div> 
+<div class="table-responsive">
+  <table class="table table-sm table-striped">    <!-- - Tabela - -->
+    <thead>
+      <tr>
+        <th scope='col'> #Id</th>
+        <th scope='col'> Código</th>
+        <th scope='col'> Seq</th>
+        <th scope='col'> Ini.Relacion.</th>
+        <th scope='col'> Razão Soc.</th>
+        <th scope='col'> Nome</th>
+        <th scope='col'> Tel</th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+        <th scope='col'></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>{{object.fornece_pk}}</td>
+          <td>{{object.cod_for}}</td>
+          <td>{{object.seq_for}}</td>
+          <td>{{object.dt_ini_relac_for}}</td>
+          <td>{{object.nm_jur_for}}</td>
+          <td>{{object.nm_com_for}}</td>
+          <td>{{object.tel_for}}</td>
+          <td><a class="btn btn-primary btn-sm" href="{% url 'hcorp' %}" role="button" title="Visualizar"><i class="bi-zoom-in"></i></a></td>
+          <td><a class="btn btn-warning btn-sm" href="{% url 'hcorp' %}" role="button" title="Alterar"><i class="bi-sliders"></i></a></td>
+          <td><a class="btn btn-danger btn-sm" href="{% url 'hcorp' %}" role="button" title="Excluir"><i class="bi-trash"></i></a></td>
+          <td><a class="btn btn-success btn-sm" href="{% url 'hcorp' %}" role="button" title="Ficha Financeira"><i class="bi bi-currency-exchange"></i></a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td> Nenhum registro encontrado.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>  
+  <br>
+
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      {% if request.GET.nm_com_for %}
+        <li class="page-item"><a class="page-link"
+            href="?page=1&nm_com_for={{request.GET.nm_com_for}}">&laquo;Primeira</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo;Anterior</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo;Primeira</a></li>
+        <li class="page-item"><a class="page-link"
+            href="?page={{page_obj.previous_page_number}}&nm_com_for={{request.GET.nm_com_for}}">&laquo;Anterior</a></li>
+        {% endif %}
+    {% endif %}
+    <li class="page-item">
+      <span class="page-link"> Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+    </li>
+    {% if page_obj.has_next %}
+      {% if request.GET.nm_com_for %}
+        <li class="page-item"><a class="page-link"
+        href="?page={{page_obj.next_page_number }}&nm_com_for={{request.GET.nm_com_for}}">&laquo;Próxima</a>
+        </li>
+        <li class="page-item"><a class="page-link"
+        href="?page={{page_obj.paginator.num_pages }}&nm_com_for={{request.GET.nm_com_for}}">&laquo;Última</a>
+        </li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Próxima</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Última &raquo;</a></li>
+      {% endif %}
+    {% endif %}
+</div>
+<br>

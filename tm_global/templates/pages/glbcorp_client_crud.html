@@ -1,0 +1,380 @@
+{% load static %}
+ 
+{% load crispy_forms_tags %}
+
+{% if request.resolver_match.url_name == 'glbclientvw' %}
+  <br>
+  <p class="h4 text-center text-primary"><b>Cadastro de Clientes - Visualizar</b></p>
+  <br>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header text-primary p-1"><b>Emp/Filial:</b></div>
+        <div class="card-block text-primary p-1">{{ object.emp_fil_fk_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header text-primary p-1"><b>Cod.Cliente:</b></div>
+        <div class="card-block text-primary p-1">{{ object.cliente_pk }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header text-primary p-1"><b>CNPJ/CPF:</b></div>
+        <div class="card-block text-primary p-1">{{ object.cnpj_cpf_cli }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Razão Social:</b></div>
+        <div class="card-block text-success p-1">{{ object.nm_jur_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Nome Comercial:</b></div>
+        <div class="card-block text-success p-1">{{ object.nm_com_cli}}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Contato Cliente:</b></div>
+        <div class="card-block text-success p-1">{{ object.contato_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Telefone:</b></div>
+        <div class="card-block text-success p-1">{{ object.tel_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>E-mail.:</b></div>
+        <div class="card-block text-success p-1">{{ object.email_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Dt.Ini.Rel.:</b></div>
+        <div class="card-block text-success p-1">{{ object.dt_ini_relac_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Status Cliente:</b></div>
+        <div class="card-block text-success p-1">{{ object.get_status_cad_cli_display }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Tp.Cliente:</b></div>
+        <div class="card-block text-success p-1">{{ object.get_tp_cli_display }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-success">
+        <div class="card-header text-success p-1"><b>Família Cadastral:</b></div>
+        <div class="card-block text-success p-1">{{ object.fam_cad_cli }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6 col-sm-8 card p-0 my-1 bg-light mb-3 border-danger">
+        <div class="card-header text-danger p-1"><b>Endereço:</b></div>
+        <div class="card-block text-danger p-1">{{ object.end_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-danger">
+        <div class="card-header text-danger p-1"><b>Complemento:</b></div>
+        <div class="card-block text-danger p-1">{{ object.end_compl_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-danger">
+        <div class="card-header text-danger p-1"><b>Bairro:</b></div>
+        <div class="card-block text-danger p-1">{{ object.end_bairro_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-danger">
+        <div class="card-header text-danger p-1"><b>Cidade:</b></div>
+        <div class="card-block text-danger p-1">{{ object.end_cidade_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+        <div class="card-header text-danger p-1"><b>CEP.:</b></div>
+        <div class="card-block text-danger p-1">{{ object.end_cep_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+        <div class="card-header text-danger p-1"><b>Estado:</b></div>
+        <div class="card-block text-danger p-1">{{ object.end_uf_cli }}</div>
+      </div>
+    </div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6 col-sm-8 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Inscr.Est.:</b></div>
+        <div class="card-block text-info p-1">{{ object.ie_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Inscr.Mun.:</b></div>
+        <div class="card-block text-info p-1">{{ object.im_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Banco:</b></div>
+        <div class="card-block text-info p-1">{{ object.banco_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Agência:</b></div>
+        <div class="card-block text-info p-1">{{ object.agencia_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Conta Corrente:</b></div>
+        <div class="card-block text-info p-1">{{ object.ccorrente_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Tipo Pagamento:</b></div>
+        <div class="card-block text-info p-1">{{ object.tp_pag_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Lim.Créd.:</b></div>
+        <div class="card-block text-info p-1">{{ object.lim_cred_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-info">
+        <div class="card-header text-info p-1"><b>Vencto.Lim.Créd.:</b></div>
+        <div class="card-block text-info p-1">{{ object.venc_lim_cred_cli }}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <a href="{% url 'glbclient' %}" class="btn btn-primary">Voltar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+{% elif request.resolver_match.url_name == 'glbclientins' %}      <!-- - Create Cadastro de Clientes - -->
+  <br>
+  <p class="h4 text-center">Cadastro de Clientes - Cadastrar</p>
+  <br>
+  <div class="container">
+    <form method="POST">{% csrf_token %}
+      <div class="form-row">
+        <div class="col-sm-2">
+          {{ form.emp_fil_fk_cli|as_crispy_field }}    
+        </div>
+        <div class="col-sm-2">
+          {{ form.cnpj_cpf_cli|as_crispy_field }}    
+        </div>
+        <div class="col-sm-2">
+          {{ form.fam_cad_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.tp_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.status_cad_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-5">
+          {{ form.nm_jur_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.nm_com_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.tel_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.end_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.end_compl_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.end_bairro_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.end_cidade_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.end_cep_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.end_uf_cli|as_crispy_field }}    
+        </div>
+            <div class="col-md-3">
+          {{ form.dt_ini_relac_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.contato_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.email_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.ie_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.im_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.banco_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.agencia_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.ccorrente_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.tp_pag_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.lim_cred_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.venc_lim_cred_cli|as_crispy_field }}    
+        </div>
+      </div>
+      <br>
+        <button type="submit" class="btn btn-danger"> Cadastrar </button>
+        <a href="{% url 'glbclient' %}" class="btn btn-primary">Voltar</a>
+    </form>
+  <br>
+  </div>
+
+{% elif request.resolver_match.url_name == 'glbclientupd' %} <!-- - Update Cadastro de Clientes - -->
+
+  <br>
+  <p class="h4 text-center">Cadastro de Clientes - Alterar</p>
+  <br>
+  <div class="container">
+    <form method="POST">{% csrf_token %}
+      <div class="form-row">
+        <div class="col-md-6">
+          {{ form.nm_jur_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-5">
+          {{ form.nm_com_cli|as_crispy_field }}    
+        </div>
+        <div class="col-sm-2">
+          {{ form.status_cad_cli|as_crispy_field }}    
+        </div>
+        <div class="col-sm-2">
+          {{ form.tp_cli|as_crispy_field }}    
+        </div>
+        <div class="col-sm-2">
+          {{ form.fam_cad_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+          {{ form.tel_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-4">
+          {{ form.end_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.end_compl_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.end_bairro_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.end_cidade_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.end_cep_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.end_uf_cli|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.dt_ini_relac_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.contato_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.email_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.ie_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.im_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.banco_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.agencia_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.ccorrente_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.tp_pag_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.lim_cred_cli|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {{ form.venc_lim_cred_cli|as_crispy_field }}
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-danger"> Alterar </button>
+      <a href="{% url 'glbclient' %}" class="btn btn-primary">Voltar</a>
+    </form>
+  <br>
+  </div>
+  <br>
+
+{% elif request.resolver_match.url_name == 'glbclientdel' %}     <!-- - Delete Cadastro de Clientes - -->
+  <br>
+  <p class="h4 text-center text-danger"><b>Cadastro de Clientes - Excluir</b></p>
+  <br>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Emp/Filial:</b></div>
+          <div class="card-block text-danger p-1">{{ object.emp_fil_fk_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Cód Cliente:</b></div>
+          <div class="card-block text-danger p-1">{{ object.cliente_pk }}</div>
+        </div>
+        <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Status:</b></div>
+          <div class="card-block text-danger p-1">{{ object.get_status_cad_cli_display }}</div>
+        </div>
+        <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>CNPJ/CPF:</b></div>
+          <div class="card-block text-danger p-1">{{ object.cnpj_cpf_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Razão Social:</b></div>
+          <div class="card-block text-danger p-1">{{ object.nm_jur_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Nome Comercial:</b></div>
+          <div class="card-block text-danger p-1">{{ object.nm_com_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Endereço:</b></div>
+          <div class="card-block text-danger p-1">{{ object.end_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Complemento:</b></div>
+          <div class="card-block text-danger p-1">{{ object.end_compl_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-3 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Bairro:</b></div>
+          <div class="card-block text-danger p-1">{{ object.end_bairro_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Cidade:</b></div>
+          <div class="card-block text-danger p-1">{{ object.end_cidade_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>CEP.:</b></div>
+          <div class="card-block text-danger p-1">{{ object.end_cep_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Estado:</b></div>
+          <div class="card-block text-danger p-1">{{ object.end_uf_cli }}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <button type="submit" class="btn btn-danger"> Excluir </button>
+        <i class="bi bi-trash-fill"></i>
+        <a href="{% url 'glbclient' %}" class="btn btn-primary">Cancelar</a>
+      </div>
+    </div>
+  </form>
+  </div>
+  <br>
+
+{% endif %}

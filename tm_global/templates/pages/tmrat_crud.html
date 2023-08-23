@@ -1,0 +1,229 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% if request.resolver_match.url_name == 'ratview' %}
+  <br>
+  <p class="h4 text-center text-primary"><b>Relatório de Atendimento Técnico - Visualizar</b></p>
+  <br>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header text-primary p-1"><b>Cód. RAT:</b></div>
+        <div class="card-block text-primary p-1">{{ object.rat_pk }}</div>
+      </div>
+      <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header text-primary p-1"><b>Cliente:</b></div>
+        <div class="card-block text-primary p-1">{{ object.cod_cli }}</div>
+      </div>
+      <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header text-primary p-1"><b>Técnico Responsável:</b></div>
+        <div class="card-block text-primary p-1">{{ object.user_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-2 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Tipo RAT:</b></div>
+        <div class="card-block text-primary p-1">{{ object.tp_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-2 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Data RAT:</b></div>
+        <div class="card-block text-primary p-1">{{ object.dt_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-2 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Hr.Início:</b></div>
+        <div class="card-block text-primary p-1">{{ object.hr_ini_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-2 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Hr.Fim:</b></div>
+        <div class="card-block text-primary p-1">{{ object.hr_ini_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-6 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Descrição:</b></div>
+        <div class="card-block text-primary p-1">{{ object.desc_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-6 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Problema Encontrato:</b></div>
+        <div class="card-block text-primary p-1">{{ object.probl_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-6 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Conclusão:</b></div>
+        <div class="card-block text-primary p-1">{{ object.conclusao_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-6 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Peças e Equipamentos:</b></div>
+        <div class="card-block text-primary p-1">{{ object.desc_pecas_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-6 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Vl.Atendimento:</b></div>
+        <div class="card-block text-primary p-1">{{ object.vl_atend_rat }}</div>
+      </div>
+      <div class="col-6 col-sm-6 text-primary card p-0 my-1 bg-light mb-3 border-primary">
+        <div class="card-header p-1"><b>Vl.Peças:</b></div>
+        <div class="card-block text-primary p-1">{{ object.vl_pecas_rat }}</div>
+      </div>
+      <a href="{% url 'htmrat' %}" class="btn btn-primary">Voltar</a>
+    </div>
+    <br>
+  </div>
+
+  
+  
+
+{% elif request.resolver_match.url_name == 'ratcreate' %}      <!-- - Create RAT - -->
+
+  <br>
+  <p class="h4 text-center">Relatório At. Técnico - Cadastrar</p>
+  <br>
+  <div class="container">
+    <form method="POST">{% csrf_token %}
+      <div class="form-row">
+        <div class="col-sm-3">
+          {{ form.cod_cli|as_crispy_field }}
+        </div>
+        <div class="col-sm-3">
+          {{ form.user_rat|as_crispy_field }}    
+        </div>
+        <div class="col-sm-3">
+          {{ form.tp_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-3">
+          {{ form.dt_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.probl_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.desc_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.conclusao_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.desc_pecas_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.hr_ini_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.hr_fim_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.vl_atend_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.vl_pecas_rat|as_crispy_field }}    
+        </div>
+      </div>
+      <br>
+        <button type="submit" class="btn btn-danger"> Cadastrar </button>
+        <a href="{% url 'htmrat' %}" class="btn btn-primary">Voltar</a>
+    </form>
+  <br>
+  </div>
+
+{% elif request.resolver_match.url_name == 'ratupdate' %} <!-- - Update RAT - -->
+
+  <br>
+  <p class="h4 text-center">RAT - Alterar</p>
+  <br>
+  <div class="container">
+    <form method="POST">{% csrf_token %}
+      <div class="form-row">
+        <div class="col-md-6">
+          {{ form.desc_rat|as_crispy_field }}    
+        </div>
+        <div class="col-sm-6">
+          {{ form.probl_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.conclusao_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-6">
+          {{ form.desc_pecas_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.vl_atend_rat|as_crispy_field }}    
+        </div>
+        <div class="col-md-2">
+          {{ form.vl_pecas_rat|as_crispy_field }}    
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-danger"> Alterar </button>
+      <a href="{% url 'htmrat' %}" class="btn btn-primary">Voltar</a>
+    </form>
+  <br>
+  </div>
+  <br>
+
+{% elif request.resolver_match.url_name == 'ratdelete' %}     <!-- - Delete RAT - -->
+  <br>
+  <p class="h4 text-center text-danger"><b>Rel.At.Técnico - Excluir</b></p>
+  <br>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Cód. RAT:</b></div>
+          <div class="card-block text-danger p-1">{{ object.rat_pk }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Cliente:</b></div>
+          <div class="card-block text-danger p-1">{{ object.cod_cli }}</div>
+        </div>
+        <div class="col-6 col-sm-4 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Técnico Resp.:</b></div>
+          <div class="card-block text-danger p-1">{{ object.user_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Tipo:</b></div>
+          <div class="card-block text-danger p-1">{{ object.tp_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Data:</b></div>
+          <div class="card-block text-danger p-1">{{ object.dt_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Hr.Inicio:</b></div>
+          <div class="card-block text-danger p-1">{{ object.hr_ini_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Hr.Fim:</b></div>
+          <div class="card-block text-danger p-1">{{ object.hr_fim_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Descricao:</b></div>
+          <div class="card-block text-danger p-1">{{ object.desc_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Problema:</b></div>
+          <div class="card-block text-danger p-1">{{ object.probl_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Conclusão:</b></div>
+          <div class="card-block text-danger p-1">{{ object.conclusao_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-6 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Peças e Equipamentos:</b></div>
+          <div class="card-block text-danger p-1">{{ object.desc_pecas_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Vl.Atendimento:</b></div>
+          <div class="card-block text-danger p-1">{{ object.vl_atend_rat }}</div>
+        </div>
+        <div class="col-6 col-sm-2 card p-0 my-1 bg-light mb-3 border-danger">
+          <div class="card-header text-danger p-1"><b>Vl.Peças:</b></div>
+          <div class="card-block text-danger p-1">{{ object.vl_pecas_rat }}</div>
+        </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <button type="submit" class="btn btn-danger"> Excluir </button>
+        <i class="bi bi-trash-fill"></i>
+        <a href="{% url 'htmrat' %}" class="btn btn-primary">Cancelar</a>
+      </div>
+    </div>
+  </form>
+  </div>
+<br>
+{% endif %}

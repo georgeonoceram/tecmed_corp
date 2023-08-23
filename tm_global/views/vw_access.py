@@ -11,5 +11,5 @@ def home(request):
 
 
 @login_required
-def hcorp(requests):
-    return render(requests, "tmglobal/pages/hcorp.html")
+def hp_corp(requests):
+    return render(requests, "./pages/hp_corp.html")
